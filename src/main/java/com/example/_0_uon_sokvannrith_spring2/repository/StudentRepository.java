@@ -13,9 +13,8 @@ import java.util.List;
 public interface StudentRepository {
     @Result(property = "name", column = "student_name")
     @Select("""
-      select  * from students
+       SELECT  * FROM students
     """)
     List<Student> getAllStudents();
-
     Student getStudentById(Long studentId);
 }
