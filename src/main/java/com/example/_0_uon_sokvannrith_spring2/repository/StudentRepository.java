@@ -15,6 +15,7 @@ public interface StudentRepository {
     @Select("""
        SELECT  * FROM students
     """)
+//    get student Id
     List<Student> getAllStudents();
     Student getStudentById(Long studentId);
 }
