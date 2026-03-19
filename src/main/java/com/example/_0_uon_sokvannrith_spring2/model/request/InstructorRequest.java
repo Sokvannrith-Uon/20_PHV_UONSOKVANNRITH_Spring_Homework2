@@ -1,4 +1,4 @@
-package com.example._0_uon_sokvannrith_spring2.model.entiity;
+package com.example._0_uon_sokvannrith_spring2.model.request;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -7,8 +7,7 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class Instructor {
-    private long instructor_id;
+public class InstructorRequest {
     private String instructorName;
     private String email;
 }

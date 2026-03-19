@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("api/v1/student")
+@RequestMapping("api/v1/students")
 @Tag(name = "StudentController")
 public class StudentController {
     private final StudentService studentService;
@@ -22,7 +22,7 @@ public class StudentController {
         return studentService.getAllStudents();
     }
     @Operation(summary = "get student by id")
-    @GetMapping("api/v1/students{student-id}")
+    @GetMapping("/{student-id}")
     public Student getStudentById(@PathVariable("student-id") long studentId){
 
 
@@ -32,7 +32,7 @@ public class StudentController {
     public Student createStudent(@RequestBody StudentRequest studentRequest){
         return new Student();
     }
-    @PutMapping("/api/v1/students{s}")
+    @PutMapping("/{student-id}")
     @Operation(summary = "update student by id")
     public Student updateStudentById(){
       return null;
