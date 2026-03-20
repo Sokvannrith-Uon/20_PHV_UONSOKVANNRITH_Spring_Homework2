@@ -68,12 +68,12 @@ public class InstructorController {
 
     @PutMapping("{update-id}")
     public ResponseEntity<ResponseApi<Instructor>> updateInstructorById(@PathVariable("update-id") Long instructorId, @RequestBody InstructorRequest request) {
-        Instructor updateInstructor= instructorService.updateInstructorById(instructorId,request);
-        if(updateInstructor==null){
-        ResponseApi<Instructor> updateRes = ResponseApi.<Instructor>builder().success(false).status(HttpStatus.NOT_FOUND).message("doesn't has date for delete").timestamp(Instant.now()).payload(updateInstructor).build();
-        return ResponseEntity.ok(updateRes);
+        Instructor updateInstructor = instructorService.updateInstructorById(instructorId, request);
+        if (updateInstructor == null) {
+            ResponseApi<Instructor> updateRes = ResponseApi.<Instructor>builder().success(false).status(HttpStatus.NOT_FOUND).message("doesn't has date for delete").timestamp(Instant.now()).payload(updateInstructor).build();
+            return ResponseEntity.ok(updateRes);
         }
-        ResponseApi<Instructor> updateRes = ResponseApi.<Instructor>builder().success(true).status(HttpStatus.OK).message("can").payload(updateInstructor).build();
+        ResponseApi<Instructor> updateRes = ResponseApi.<Instructor>builder().success(true).status(HttpStatus.OK).message("can").payload(updateInstructor).timestamp(Instant.now()).build();
         return ResponseEntity.ok(updateRes);
 
     }
