@@ -1,5 +1,6 @@
 package com.example._0_uon_sokvannrith_spring2.controller;
 import com.example._0_uon_sokvannrith_spring2.model.entiity.Course;
+import com.example._0_uon_sokvannrith_spring2.model.entiity.Instructor;
 import com.example._0_uon_sokvannrith_spring2.model.request.CourseRequest;
 import com.example._0_uon_sokvannrith_spring2.model.respoonse.ResponseApi;
 import com.example._0_uon_sokvannrith_spring2.service.CourseService;
@@ -56,5 +57,21 @@ public class CourseController {
                 timestamp(Instant.now()).
                 build();
         return ResponseEntity.ok(update);
+    }
+    @PostMapping
+    public ResponseEntity<ResponseApi<List<Course>>> createCourse(@RequestBody CourseRequest request){
+        Course course = courseService.createCourse(request);
+        ResponseApi<List<Course>> createNewData = ResponseApi.<List<Course>>builder().build();
+        return ResponseEntity.ok(createNewData);
+    }
+    @DeleteMapping("/{course_id}")
+    public ResponseEntity<ResponseApi<Course>> DeleteCourseById(@PathVariable("course_id") Long courseId) {
+        Course delCourse = courseService.deleteCourseById(courseId);
+        if (delCourse == null) {
+            ResponseApi<Course> responseApi = ResponseApi.<Course>builder().success(false).status(HttpStatus.NOT_FOUND).message("Don't has data ").payload(delCourse).timestamp(Instant.now()).build();
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(responseApi);
+        }
+        ResponseApi<Course> responseApi = ResponseApi.<Course>builder().success(true).status(HttpStatus.OK).message("SuccessFully").payload(delCourse).timestamp(Instant.now()).build();
+        return ResponseEntity.status(HttpStatus.OK).body(responseApi);
     }
 }

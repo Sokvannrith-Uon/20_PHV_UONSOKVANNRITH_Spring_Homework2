@@ -31,4 +31,14 @@ public class CourseServiceImp implements CourseService {
     public Course updateById(Long courseId, CourseRequest request) {
         return courseRepository.updateById(courseId,request);
     }
+
+    @Override
+    public Course createCourse(CourseRequest request) {
+        return courseRepository.createCourse(request);
+    }
+
+    @Override
+    public Course deleteCourseById(Long courseId) {
+        return courseRepository.deleteCourseById(courseId);
+    }
 }

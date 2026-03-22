@@ -5,11 +5,17 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.List;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class InstructorRequest {
-    private String instructorName;
+public class StudentRequest {
+    private String studentName;
     @Schema(example = "example@gmail.com")
     private String email;
+    private String phoneNumber;
+    private List<Long> courseId;
+
+
+
 }

@@ -32,4 +32,16 @@ public interface CourseRepository {
             description=#{request.description} where course_id=#{courseId} returning *
             """)
     Course updateById(Long courseId, CourseRequest request);
+    @ResultMap("courseMapping")
+    @Select("""
+            INSERT INTO courses (default,course_name, description, instructor_id)
+            VALUES (#{request.courseName}, #{request.description}, #{request.instructor})
+            RETURNING *
+            """)
+    Course createCourse(CourseRequest request);
+    @ResultMap("courseMapping")
+    @Select("""
+                DELETE FROM courses WHERE course_id = #{courseId} RETURNING *
+            """)
+    Course deleteCourseById(Long courseId);
 }
